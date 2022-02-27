@@ -1,18 +1,19 @@
-function pogemon(inputTable) {
-    let len = inputTable[0]
+// the main wrapper function
+export function pogemon(inputTable) {
     let sacha = inputTable[1].split(" ")
     let mine = inputTable[2].split(" ")
 
     // brute forcing all possibilities
-    const minePermuted = permutator(mine)
+    const minePermuted = permutator(mine, sacha)
     for (const minePermutedElement of minePermuted) {
-        if (winner(sacha, minePermutedElement) === 1)
+        if (Iwin(sacha, minePermutedElement))
             return minePermutedElement.join(" ")
     }
-    return "-1"
+    return -1
 }
-function rules(type1, type2) {
+
 //type1 & type2 are strings
+export function rules(type1, type2) {
     const data = {
         //case plante
         'plante': {"poison": 'plante', 'sol': 'sol', 'vol': 'vol', 'plante': 'n'},
@@ -24,17 +25,18 @@ function rules(type1, type2) {
     const listType = ['feu', 'eau', 'plante', 'glace', 'poison', 'sol', 'vol']
     let dataout;
 
-    if (!listType.includes(type1) || !listType.includes(type2))
+    // skip if at least one type is invalid (not in the listType)
+    if (!listType.includes(type1) || !listType.includes(type2)) {
         dataout = 'n'
-    else if (typeof data[type1] != 'undefined') {
-        if (typeof data[type1][type2] == "undefined" && Object.keys(data).includes(type2))
-            dataout = data[type2][type1]
-        else
+    } else {
+        if (Object.keys(data).includes(type1) && typeof data[type1][type2] !== "undefined")
             dataout = data[type1][type2]
+        else if (Object.keys(data).includes(type2) && typeof data[type2][type1] !== "undefined")
+            dataout = data[type2][type1]
+        else dataout = 'n'
+    }
 
-    } else if (typeof data[type1] == "undefined")
-        dataout = data[type2][type1]
-
+    //replace all undefined result to "n"
     return (typeof dataout == "undefined") ? 'n' : dataout;
 }
 
@@ -58,13 +60,12 @@ const permutator = (inputArr) => {
     return result;
 }
 
-function winner([...sacha], [...mine]) {
 //take parameter as table of data
+export function Iwin([...sacha], [...mine]) {
     while (true) {
         if (sacha.length === 0 || mine.length === 0)
             break
-        //if I win
-        // remove sacha's thirst element
+        //if I win remove sacha's thirst element
         let ruleResult = rules(sacha[0], mine[0]);
         if (ruleResult === mine[0]) {
             sacha.shift()
@@ -79,9 +80,10 @@ function winner([...sacha], [...mine]) {
             mine.shift()
     }
     if (sacha.length < mine.length)
-        return 1
-    if (sacha.length === mine.length)
-        return 0
-    if (sacha.length > mine.length)
-        return -1
+        return true
+    if (sacha.length >= mine.length)
+        return false
 }
+
+//todo: fix timeout issue
+
