@@ -1,7 +1,7 @@
-.idea/.gitignore
-.idea/examen.iml
-.idea/jsLibraryMappings.xml
-.idea/modules.xml
+.idea/
+.nyc_output/
+coverage/
+battleDev-2020-Pogemon/
+node_modules/
 package-lock.json
 package.json
-test/
