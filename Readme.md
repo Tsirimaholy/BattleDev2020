@@ -2,15 +2,13 @@
 
 ## The rules
 
-|Card1 |Card2|Winner card|
-|-----------------|---------------|
-| Feu | Eau      | Eau |
+|**Card1** |**Card2**|**Winner card**|
+|----------|---------|---------------|
+| Feu | Eau | Eau |
 |Feu | Plante   | Feu  |
 |Feu | Glace    | Feu |
-
 |Eau | Plante   | Plante |
 |Eau | Sol      | Sol |
-
 |Plante | Poison | Plante |
 |Plante | Sol    | Sol |
 |Plante | Vol    | Plante |
@@ -39,7 +37,7 @@ npx mocha
 
 1. Performance issues
     >The runtime complexity of this game is `horrible`
-    * his is probably caused by the permutation generator function
+    + his is probably caused by the permutation generator function
 
 2. Build a friendly User interface
     > At this state only programmer, or some user can use this game
