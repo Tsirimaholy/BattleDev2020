@@ -1,6 +1,6 @@
-import {expect} from "chai"
-import {pogemon, rules} from "../pogemon.js";
-
+import { expect } from "chai"
+import { pogemon, rules } from "../pogemon.js";
+import { describe } from "mocha";
 describe("The Pogemon game", () => {
 
     describe('Rules validation', () => {
@@ -20,7 +20,7 @@ describe("The Pogemon game", () => {
         })
     })
 
-    describe("main function", () => {
+    describe("Main function", () => {
 
         it('should return -1 if there is no possible card order were sacha win', () => {
             expect(pogemon([3, "sol sol eau", "eau feu plante"])).to.be.eql(-1)
@@ -34,7 +34,7 @@ describe("The Pogemon game", () => {
                     '10',
                     'poison glace eau eau eau vol plante vol poison plante',
                     'plante sol plante plante feu sol plante plante plante plante']
-                )
+            )
             ).to.be.eql("plante sol plante plante feu sol plante plante plante plante")
         })
 
