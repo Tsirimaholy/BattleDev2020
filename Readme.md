@@ -33,6 +33,7 @@ npm i -D mocha
 npm i -D chai
 npx mocha
 ```
+⚠️**Notice**: Notice that i'm using ES6 modules(not `commonjs`) across all my code, but you can change it at your own risk😉🤞
 
 # Some help are Welcome
 
